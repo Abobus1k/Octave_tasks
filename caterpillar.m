@@ -10,7 +10,6 @@ function caterpillar(r, x0, f, numOfCircles)
     ph = plot(x, y);
     plotList(1) = ph;
     delta = r / 10000;
-
     for i = 2:numOfCircles
         dfx = (f(X(i-1) + delta) - f(X(i-1))) / delta;
         angle = atan(dfx);
@@ -18,10 +17,8 @@ function caterpillar(r, x0, f, numOfCircles)
         Y(i) = Y(i-1) + 2 * r * sin(angle);
         plotList(end+1) = circle(r, X(i), Y(i), ph, x0, y0);
     end
-
     t = 0:pi/100:2*pi;
     pause(1);
-
     for i = 0:pi/1000:2*pi
         for j = 1:numOfCircles-1
             x = r * cos(t) + X(j+1);
@@ -42,11 +39,10 @@ function caterpillar(r, x0, f, numOfCircles)
         drawnow
     end
 end
-
-function ph = circle(r, x0, y0, ph, xAxis, yAxis)
+function p = circle(r, x0, y0, ph, xx, yy)
     t = 0:pi/100:2*pi;
     x = r * cos(t) + x0;
     y = r * sin(t) + y0;
-    ph = plot(x, y);
-    axis([xAxis xAxis+100 yAxis-50 yAxis+50]);
+    p = plot(x, y);
+    axis([xx xx+100 yy-50 yy+50]);
 end
