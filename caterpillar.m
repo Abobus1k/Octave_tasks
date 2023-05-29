@@ -2,22 +2,26 @@ function caterpillar(r, x0, f, numOfCircles)
     plotList = [];
     hold on
     y0 = f(x0);
+    point0 = [x0,y0];
     X = repmat(x0, numOfCircles, 1);
     Y = repmat(y0, numOfCircles, 1);
-    t = 0:pi/100:2*pi;
+    t = linspace(0,2*pi,300)
     x = r * cos(t) + X(1);
     y = r * sin(t) + Y(1);
     ph = plot(x, y);
     plotList(1) = ph;
-    delta = r / 10000;
+    h = 1e-8;
     for i = 2:numOfCircles
-        dfx = (f(X(i-1) + delta) - f(X(i-1))) / delta;
+        dfx = (f(X(i-1) + h) - f(X(i-1))) / h;
         angle = atan(dfx);
-        X(i) = X(i-1) + 2 * r * cos(angle);
-        Y(i) = Y(i-1) + 2 * r * sin(angle);
-        plotList(end+1) = circle(r, X(i), Y(i), ph, x0, y0);
+        lastX = X(i-1);
+        lastY = Y(i-1);
+        X(i) = lastX + 2 * r * cos(angle);
+        Y(i) = lastY + 2 * r * sin(angle);
+        point = [X(i),Y(i)]
+        plotList(end+1) = circle(r, point, ph, point0);
     end
-    t = 0:pi/100:2*pi;
+    t = linspace(0,2*pi,300)
     pause(1);
     for i = 0:pi/1000:2*pi
         for j = 1:numOfCircles-1
@@ -28,7 +32,7 @@ function caterpillar(r, x0, f, numOfCircles)
             set(plotList(j), 'YDATA', y, 'XDATA', x);
             drawnow
         end
-        dfx = (f(X(numOfCircles) + delta) - f(X(numOfCircles))) / delta;
+        dfx = (f(X(numOfCircles) + h) - f(X(numOfCircles))) /h;
         angle = atan(dfx);
         x = x + 2 * r * cos(angle);
         X(numOfCircles) = X(numOfCircles) + 2 * r * cos(angle);
@@ -39,10 +43,10 @@ function caterpillar(r, x0, f, numOfCircles)
         drawnow
     end
 end
-function p = circle(r, x0, y0, ph, xx, yy)
+function p = circle(r, point, ph, point0)
     t = 0:pi/100:2*pi;
-    x = r * cos(t) + x0;
-    y = r * sin(t) + y0;
+    x = r * cos(t) + point(1);
+    y = r * sin(t) + point(2);
     p = plot(x, y);
-    axis([xx xx+50 yy-25 yy+25]);
+    axis([point0(1) point0(1)+50 point0(2)-25 point0(2)+25]);
 end
