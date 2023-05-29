@@ -3,10 +3,6 @@ function m = fence(rows, cols)
         cols = rows;
     end
 
-    m = zeros(rows, cols);
-    m(:, 1:2:end) = 1;
-
-    if mod(cols, 2) == 0
-        m(:, end) = 0;
-    end
+    m = false(rows, cols);
+    m(:, 1:2:end) = true;
 end
