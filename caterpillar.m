@@ -44,5 +44,5 @@ function p = circle(r, x0, y0, ph, xx, yy)
     x = r * cos(t) + x0;
     y = r * sin(t) + y0;
     p = plot(x, y);
-    axis([xx xx+100 yy-50 yy+50]);
+    axis([xx xx+50 yy-25 yy+25]);
 end
