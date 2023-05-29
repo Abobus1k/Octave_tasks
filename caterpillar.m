@@ -1,10 +1,34 @@
+## Copyright (C) 2023 GOD
+##
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+## -*- texinfo -*-
+## @deftypefn {} {@var{retval} =} caterpillar (@var{input1}, @var{input2})
+##
+## @seealso{}
+## @end deftypefn
+
+## Author: GOD <GOD@DESKTOP-LMN0LT5>
+## Created: 2023-05-29
+
 function caterpillar(r, x0, f, numOfCircles)
     plotList = [];
     hold on
     y0 = f(x0);
     point0 = [x0,y0];
-    X = repmat(x0, numOfCircles, 1);
-    Y = repmat(y0, numOfCircles, 1);
+    X = repmat(x0, numOfCircles, 1)
+    Y = repmat(y0, numOfCircles, 1)
     t = linspace(0,2*pi,300)
     x = r * cos(t) + X(1);
     y = r * sin(t) + Y(1);
