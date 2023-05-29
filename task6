@@ -1,0 +1,11 @@
+function m = task6(rows, cols)
+    m = zeros(rows, cols);
+    value = randi(10)
+    for i = 1:rows
+        value = value + 1;
+
+        for j = 1:cols
+            m(i, j) = value;
+        end
+    end
+end
